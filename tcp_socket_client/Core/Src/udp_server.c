@@ -65,6 +65,8 @@ typedef enum {
 
 }commandErrorTypedef;
 
+
+
 static commandErrorTypedef commandHandler(const uint8_t *buffer, size_t len){
 
 

@@ -115,8 +115,6 @@
 #define CHECKSUM_CHECK_ICMP6 0
 /*----- Default Value for NETIF_DEBUG: LWIP_DBG_OFF ---*/
 #define NETIF_DEBUG LWIP_DBG_ON
-/*----- Default Value for DNS_DEBUG: LWIP_DBG_OFF ---*/
-#define DNS_DEBUG LWIP_DBG_ON
 /*-----------------------------------------------------------------------------*/
 /* USER CODE BEGIN 1 */
 #define LWIP_DEBUG LWIP_DBG_ON
