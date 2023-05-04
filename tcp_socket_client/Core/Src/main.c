@@ -55,6 +55,7 @@ UART_HandleTypeDef huart3;
 osThreadId defaultTaskHandle;
 osThreadId tcpClientTaskHandle;
 osThreadId tcpServerTaskHandle;
+osThreadId udpServerTaskHandle;
 /* USER CODE BEGIN PV */
 //DHT_sensor dht11 = {DHT11_IO_GPIO_Port, DHT11_IO_Pin, DHT11, 0};
 /* USER CODE END PV */
@@ -66,6 +67,7 @@ static void MX_USART3_UART_Init(void);
 void StartDefaultTask(void const * argument);
 extern void StartTcpClientTask(void const * argument);
 extern void StartTcpServerTask(void const * argument);
+extern void StartUdpServerTask(void const * argument);
 
 /* USER CODE BEGIN PFP */
 
@@ -332,6 +334,10 @@ int main(void)
   /* definition and creation of tcpServerTask */
   osThreadDef(tcpServerTask, StartTcpServerTask, osPriorityNormal, 0, 2048);
   tcpServerTaskHandle = osThreadCreate(osThread(tcpServerTask), NULL);
+
+  /* definition and creation of udpServerTask */
+  osThreadDef(udpServerTask, StartUdpServerTask, osPriorityNormal, 0, 2048);
+  udpServerTaskHandle = osThreadCreate(osThread(udpServerTask), NULL);
 
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
@@ -635,7 +641,7 @@ void StartDefaultTask(void const * argument)
 		  lcd_puts(msg);
 	  }
 
-	  BSP_LED_Toggle(BLUE);
+	  //BSP_LED_Toggle(BLUE);
 	  osDelay(1000);
   }
   /* USER CODE END 5 */
