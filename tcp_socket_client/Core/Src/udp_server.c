@@ -71,7 +71,7 @@ static commandErrorTypedef commandHandler(const uint8_t *buffer, size_t len){
 
 
     int num;
-	char cmd[sizeof("sversion")];
+	char cmd[sizeof("sversion")] = {0,}; 
 	uint8_t *message[] = { "OK\r\n", "ERROR\r\n" };
 	uint8_t *led_status[] = { "OFF\r\n", "ON\r\n"};
 
@@ -188,7 +188,7 @@ void StartUdpServerTask(void const *argument) {
 			if (FD_ISSET(socket_fd, &rfds)) {
 
 				ssize_t received;
-				uint8_t buffer[32];
+				uint8_t buffer[32] = {0,};
 				const size_t buf_size = sizeof(buffer);
 				received = recvfrom(socket_fd, buffer, buf_size, MSG_DONTWAIT,
 						(struct sockaddr* ) &client_addr,
